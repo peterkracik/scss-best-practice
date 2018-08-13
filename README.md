@@ -60,7 +60,8 @@ files containing default settins, functions, variables and everything to set up 
 #### Components
 one file per block.
 example:
-page.scss
+
+__page.scss__
 ```
 .page {
     ...
@@ -69,7 +70,7 @@ page.scss
 
 }
 ```
-page-header.scss
+__page-header.scss__
 ```
 .page-header {
     ...
@@ -84,7 +85,8 @@ page-header.scss
 
 in the case of big file, could be separated also by elements
 for example:
-page-header-nav.scss
+
+__page-header-nav.scss__
 ```
 .page-header_nav {
     ...
@@ -92,7 +94,7 @@ page-header-nav.scss
 ```
 
 #### Vendors
-external css files (if not loaded differently)
+external css files (if not imported differently)
 
 ### 2. Name them right
 1. All files except the endpoint files should start with the underscore. So we'll know they only includes files.
