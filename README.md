@@ -278,6 +278,7 @@ They should be organised by:
 
 ```
 .item {
+    color: red;
     ...
     // events
     &:hover {
@@ -287,6 +288,7 @@ They should be organised by:
     &.is-active {
         ...
     }
+    // parent flags
     .selected & {
         ...
     }
@@ -294,7 +296,7 @@ They should be organised by:
     &--blue {
         ...
     }
-    // before and after, they are child elements
+    // before and after, they are considered as a child (standalone) elements
     &:before, &:after {
         ...
     }
@@ -304,12 +306,6 @@ They should be organised by:
     }
 }
 ```
-
-#### :before, :after are standolone(ish) elements
-
-#### flags
-
-#### js flags
 
 ### 5. media queries
 
