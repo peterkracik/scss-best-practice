@@ -167,7 +167,8 @@ to apply new rule to the .image, you would have to override all these classes. S
 }
 ```
 
-So in the SCSS files it should look like this
+So this idea in the SCSS:
+
 NO
 ```
 .product {
