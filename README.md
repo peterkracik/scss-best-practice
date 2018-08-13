@@ -96,9 +96,11 @@ external css files (if not loaded differently)
 
 ### 2. Name them right
 1. All files except the endpoint files should start with the underscore. So we'll know they only includes files.
-2. Names of the components files should be always the same as the block where we use them. So we know directly in which file we have to search for a specific selector.
+2. Names of the components files should be always the same as the model or element where we use them. So we know directly in which file we have to search for a specific selector. underscore should be replace by -
 
 ### 3. Selectors
+We should use following as selectors:
+
 #### CLASS: YES
 But flags not as a standalone selectors.
 
@@ -121,16 +123,15 @@ YES
 these are only for JS, hard to override (needs 256 classes selector to override an ID)
 
 #### TAG: NO*
-* only in specific cases:
- - when there is no possibility to add class
- - output of a wysiwyg
- - default settings (body, html, reset ul... )
- - inputs with type attribute
-
-because tags could be replaced in the html, but classes stay. and they are hard to override
+*only in specific cases:
+ - when there is no possibility to add class directly in the html
+ - if it is an output of a wysiwyg
+ - for default settings (body, html, reset ul... )
+ - inputs with type attribute ( input[type='text'], textarea)
 
 #### ATTRIBUTES: YES*
 But not as a standalone selector
+
 NO
 ```
 [type='text'] {
@@ -145,8 +146,94 @@ input[type='type'] {
 ```
 
 ### 3. Don't ident. just don't!
-- dont indent selectors - no multiple classes allowed (flags are exceptions)
-- dont indent bem selectors, keep it flat for readability
+Dont indent selectors - no multiple classes allowed. Flags and parental classes are exceptions. You most probably will have problems to apply new rules.
+
+The compiled CSS SHOULDN'T look like
+```
+.product .product-item ul > li .image {
+    ...
+}
+```
+to apply new rule to the .image, you would have to override all these classes. So the compiled CSS SHOULD have one selector for the rule(s). As I mentioned, flags and parental rules are exceptions:
+```
+.product__image {
+    ...
+}
+.is-active.product__image {
+    ...
+}
+.product__image.is-selected {
+    ...
+}
+```
+
+So in the SCSS files it should look like this
+NO
+```
+.product {
+    background: red;
+    .product__image {
+        ...
+    }
+    .title {
+        ...
+    }
+}
+```
+YES
+```
+.product {
+    background: red;
+    &__image {
+        ...
+    }
+    .is-active & { // for parental class
+        ...
+    }
+    &--blue {
+        ...
+    }
+    &.is-selected {
+        ...
+    }
+}
+.title {
+
+}
+```
+
+Dont inden't BEM rules, keep it flat for readability and to make it easy to find your class. Each B and E standalone. Modifier should be inside.
+
+NO
+```
+.product {
+    ...
+    &__item {
+        ...
+        &-image {
+            ...
+            &--small {
+                ...
+            }
+        }
+    }
+}
+```
+YES
+```
+.product {
+    ...
+}
+.product__item {
+    ...
+}
+.product__item-image {
+    ...
+    &--small {
+
+    }
+}
+```
 
 ### 4. DON'T change item's children properties, DO change item's properties based on its parent
 Keep rules for an item all together, so you don't need to search file(s) to find specific behaviour
@@ -180,9 +267,43 @@ Keep rules for an item all together, so you don't need to search file(s) to find
 }
 ```
 
-### 4. Simplify selectors
-
 ### 4. Selector order
+They should be organised by:
+1. rules for the selector
+2. states of selector (events, flags)
+3. variations of the selector created by modifier
+4. elements directly attached to the selector (pseudo-elements)
+5. child elements
+
+```
+.item {
+    ...
+    // events
+    &:hover {
+        ...
+    }
+    // flags
+    &.is-active {
+        ...
+    }
+    .selected & {
+        ...
+    }
+    // modifiers, because its already a variation of the block or element
+    &--blue {
+        ...
+    }
+    // before and after, they are child elements
+    &:before, &:after {
+        ...
+    }
+    // child elements
+    &__child {
+        ...
+    }
+}
+```
+
 #### :before, :after are standolone(ish) elements
 
 #### flags
