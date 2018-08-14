@@ -372,6 +372,7 @@ YES
 dont add too specific rules to tag selectors, if there will be at least one case where needs to be overridden, use them only to reset the element. less rules are better.
 
 NO
+
 /general/_common.scss
 ```
 a {
@@ -381,6 +382,7 @@ a {
 ```
 
 because you would need to use tag selector again
+
 /components/_item.scss
 ```
 a.item {
@@ -392,6 +394,7 @@ a.item {
 ```
 
 YES
+
 /general/_common.scss
 ```
 a {
