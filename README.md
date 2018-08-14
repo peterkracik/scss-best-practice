@@ -16,7 +16,7 @@ ps: These are not only my ideas, I was inspired by my collegues and other devs a
 7. Utility class ex: <div class="product bold fs-12 pb3 pt4 mr1 mtd2">...</div>
 
 ## What we want
-1. All rules for one element in one place in my SCSS files 
+1. All rules for one element in one place in my SCSS files
 2. Reduce the count of selector for each element to 1 max. 2 (accepting flags coming from JS for example) in compiled CSS
 3. Clear rules for media queries
 4. Immediately find the selector and all its rules
@@ -310,7 +310,159 @@ They should be organised by:
 ```
 
 ### 5. media queries
-// TODO
+
+#### Specify media queries for each element separatly
+those are rules for your element, not the whole block. And it's much easier to read the file.
+
+NO
+```
+.item {
+    font-size: 12px;
+}
+.item__child {
+    color: black;
+    &:hover {
+        color: red;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .item {
+        font-weight: bold;
+    }
+    .item__child {
+        font-style: italic;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+```
+
+NO
+```
+.item {
+    font-size: 12px;
+}
+.item__child {
+    color: black;
+    &:hover {
+        color: red;
+    }
+    @media only screen and (min-width: 768px) {
+        font-style: italic;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+```
+
+YES
+```
+.item {
+    font-size: 12px;
+    @media only screen and (min-width: 768px) {
+        font-weight: bold;
+    }
+}
+.item__child {
+    color: black;
+    @media only screen and (min-width: 768px) {
+        font-style: italic;
+    }
+    &:hover {
+        color: red;
+        @media only screen and (min-width: 768px) {
+            text-decoration: underline;
+        }
+    }
+}
+
+```
+
+#### Limit media queries
+I try to keed my media queries with the same idea as the rest of the CSS - override as little as possible, the best would be to don't override any rules/selectors.
+So I apply media query rules only to the specific resolutions limited by min and max. No Mobile first or Desktop first. Each rule only for its specific resolution.
+
+Another reason for this method is to be able to use the plugin [gulp-combine-mq](https://www.npmjs.com/package/gulp-combine-mq). It combine same media queries to one and place them at the end of the CSS file. But it means, the order of applied media queries for the selector could be different than the order in the SCSS file and so media queries could override each other in different way that we'd like.
+
+In the example I use classic media query statement, but normally I do have my mixins for simplify.
+
+NO
+```
+.item {
+    font-size: 10px;
+    @media only screen and (min-width: 768px) {
+        font-size: 14px;
+    }
+    @media only screen and (min-width: 960px) {
+        font-size: 16px;
+    }
+    @media only screen and (min-width: 1025px) {
+        font-size: 17px;
+    }
+    @media only screen and (min-width: 1280px) {
+        font-size: 18px;
+    }
+}
+```
+
+because the compiled CSS would look like this:
+font-size: 18px;
+~~font-size: 17px;~~
+~~font-size: 16px;~~
+~~font-size: 14px;~~
+~~font-size: 10px;~~
+
+YES
+```
+.item {
+    @media only screen and (max-width: 767px) { 
+        font-size: 10px;
+    }
+    @media only screen and (min-width: 768px) and (max-width: 959px) {
+        font-size: 14px;
+    }
+    @media only screen and (min-width: 960px) and (max-width: 1024px) {
+        font-size: 16px
+    }
+    @media only screen and (min-width: 1025px) and (max-width: 1279px) {
+        font-size: 17px
+    }
+    @media only screen and (min-width: 1280px) {
+        font-size: 18px
+    }
+}
+```
+This will give us only one final rule.
+
+### Don't use general rules, if you gonna override it
+Dont apply general selector rule, if you need different value for certain resolution.
+
+NO
+```
+.item {
+    color: red;
+    font-size: 16px;
+    @media only screen and (max-width: 767px) { 
+        font-size: 10px;
+    }
+}
+```
+
+YES
+```
+.item {
+    color: red;
+    @media only screen and (max-width: 767px) { 
+        font-size: 10px;
+    }
+    @media only screen and (min-width: 768px) { 
+        font-size: 16px;
+    }
+}
+```
+
 
 ### 6. rules order
 // TODO
@@ -367,11 +519,33 @@ HTML
 <div class="item item--red"></div>
 ```
 
-#### js flags
-// TODO
+#### JS flags
+Classed applied by Javascript - instead of using BEM type modifier, is easier to use special flags which are added by JS and then modified in the CSS. 
+- they should start with is- or has- ie: is-active, .is-selected, .has-child
+- they shouldn't be threated as a standalone selector
 
-### 8. properties - do and don't
-dont add too specific rules to tag selectors, if there will be at least one case where needs to be overridden, use them only to reset the element. less rules are better.
+NO
+```
+.item {
+    color: black;
+}
+.is-active {
+    color: red;
+}
+```
+
+YES
+```
+.item {
+    color: black;
+    &.is-active {
+        color: red;
+    }
+}
+```
+
+### 8. properties
+Dont add too specific rules to tag selectors, if there will be at least one case where needs to be overridden, use them only to reset the element. less rules are better.
 
 NO
 
@@ -425,7 +599,7 @@ a {
 ### 9. mixins, includes, extends
 
 ### 10. Utility classes
-I'm against using utility classes 
+I'm against using utility classes
 ```
     <div class="bold fs12 color-red mt10 p3">
     ...
