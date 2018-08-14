@@ -55,13 +55,12 @@ Which tools is not so important, but what they achieve it is.
 ```
 
 #### General
-files containing default settins, functions, variables and everything to set up your project.
+files containing default settins, functions, variables and everything to set up the project.
 
 #### Components
-one file per block.
-example:
-
-__page.scss__
+SCSS files should contain only one block or element. If you need same element in another project, in the best case you just copy html html and this file and you're ready to go. Probably variables would match, but that's the least.  
+example:  
+_page.scss_  
 ```
 .page {
     ...
@@ -70,7 +69,7 @@ __page.scss__
 
 }
 ```
-__page-header.scss__
+_page-header.scss_  
 ```
 .page-header {
     ...
@@ -84,9 +83,8 @@ __page-header.scss__
 ```
 
 in the case of big file, could be separated also by elements
-for example:
-
-__page-header-nav.scss__
+for example:  
+_page-header-nav.scss_  
 ```
 .page-header_nav {
     ...
