@@ -106,14 +106,14 @@ We should use following as selectors:
 #### CLASS: YES
 But flags not as a standalone selectors.
 
-NO
+**DON'T**  
 ```
 .is-active {
     color: red;
 }
 ```
 
-YES
+**DO**  
 ```
 .item {
     &.is-active {
@@ -134,13 +134,13 @@ these are only for JS, hard to override (needs 256 classes selector to override 
 #### ATTRIBUTES: YES*
 But not as a standalone selector
 
-NO
+**DON'T**  
 ```
 [type='text'] {
     color: red;
 }
 ```
-YES
+**DO**  
 ```
 input[type='type'] {
     color: red;
@@ -171,7 +171,7 @@ to apply new rule to the .image, you would have to override all these classes. S
 
 So this idea in the SCSS:
 
-NO
+**DON'T**  
 ```
 .product {
     background: red;
@@ -183,7 +183,7 @@ NO
     }
 }
 ```
-YES
+**DO**  
 ```
 .product {
     background: red;
@@ -207,7 +207,7 @@ YES
 
 Dont inden't BEM rules, keep it flat for readability and to make it easy to find your class. Each B and E standalone. Modifier should be inside.
 
-NO
+**DON'T**  
 ```
 .product {
     ...
@@ -222,7 +222,7 @@ NO
     }
 }
 ```
-YES
+**DO**  
 ```
 .product {
     ...
@@ -314,7 +314,7 @@ They should be organised by:
 #### Specify media queries for each element separatly
 those are rules for your element, not the whole block. And it's much easier to read the file.
 
-NO
+**DON'T**  
 ```
 .item {
     font-size: 12px;
@@ -338,7 +338,7 @@ NO
 }
 ```
 
-NO
+**DON'T**  
 ```
 .item {
     font-size: 12px;
@@ -357,7 +357,7 @@ NO
 }
 ```
 
-YES
+**DO**  
 ```
 .item {
     font-size: 12px;
@@ -388,7 +388,7 @@ Another reason for this method is to be able to use the plugin [gulp-combine-mq]
 
 In the example I use classic media query statement, but normally I do have my mixins for simplify.
 
-NO
+**DON'T**  
 ```
 .item {
     font-size: 10px;
@@ -414,7 +414,7 @@ font-size: 18px;
 ~~font-size: 14px;~~  
 ~~font-size: 10px;~~  
 
-YES
+**DO**  
 ```
 .item {
     @media only screen and (max-width: 767px) { 
@@ -439,7 +439,7 @@ This will give us only one final rule.
 ### Don't use general rules, if you gonna override it
 Dont apply general selector rule, if you need different value for certain resolution.
 
-NO
+**DON'T**  
 ```
 .item {
     color: red;
@@ -450,7 +450,7 @@ NO
 }
 ```
 
-YES
+**DO**  
 ```
 .item {
     color: red;
@@ -482,7 +482,7 @@ YES
 #### modifiers
 modifiers are not standalone classes. They just modifie the block or element selector.
 
-NO
+**DON'T**  
 ```
 .item {
     background: blue;
@@ -502,7 +502,7 @@ HTML
 
 ```
 
-YES
+**DO**  
 ```
 .item {
     background: blue;
@@ -524,7 +524,7 @@ Classed applied by Javascript - instead of using BEM type modifier, is easier to
 - they should start with is- or has- ie: is-active, .is-selected, .has-child
 - they shouldn't be threated as a standalone selector
 
-NO
+**DON'T**  
 ```
 .item {
     color: black;
@@ -534,7 +534,7 @@ NO
 }
 ```
 
-YES
+**DO**  
 ```
 .item {
     color: black;
@@ -547,8 +547,7 @@ YES
 ### 8. properties
 Dont add too specific rules to tag selectors, if there will be at least one case where needs to be overridden, use them only to reset the element. less rules are better.
 
-NO
-
+**DON'T**    
 /general/_common.scss
 ```
 a {
@@ -569,8 +568,7 @@ a.item {
 }
 ```
 
-YES
-
+**DO**  
 /general/_common.scss
 ```
 a {
