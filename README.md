@@ -312,7 +312,7 @@ They should be organised by:
 ### 5. media queries
 
 #### Specify media queries for each element separatly
-those are rules for your element, not the whole block. And it's much easier to read the file.
+those are rules for the element, not the whole block. And it's much easier to read the file.
 
 **DON'T**  
 ```
@@ -334,6 +334,9 @@ those are rules for your element, not the whole block. And it's much easier to r
         &:hover {
             text-decoration: underline;
         }
+        &:before {
+            content: '-';
+        }
     }
 }
 ```
@@ -352,6 +355,9 @@ those are rules for your element, not the whole block. And it's much easier to r
         font-style: italic;
         &:hover {
             text-decoration: underline;
+        }
+         &:before {
+            content: '-';
         }
     }
 }
@@ -374,6 +380,11 @@ those are rules for your element, not the whole block. And it's much easier to r
         color: red;
         @media only screen and (min-width: 768px) {
             text-decoration: underline;
+        }
+    }
+    &:before {
+        @media only screen and (min-width: 768px) {
+            content: '-';
         }
     }
 }
