@@ -424,13 +424,13 @@ YES
         font-size: 14px;
     }
     @media only screen and (min-width: 960px) and (max-width: 1024px) {
-        font-size: 16px
+        font-size: 16px;
     }
     @media only screen and (min-width: 1025px) and (max-width: 1279px) {
-        font-size: 17px
+        font-size: 17px;
     }
     @media only screen and (min-width: 1280px) {
-        font-size: 18px
+        font-size: 18px;
     }
 }
 ```
@@ -596,19 +596,20 @@ a {
 #### font-size
 // TODO
 
-### 9. mixins, includes, extends
+### 9. mixins, includes, extends, variables
+// TODO
 
 ### 10. Utility classes
-I'm against using utility classes
+I really don't like to use utility classes. In the most cases we create them to do think easier (maybe we are already lost in our or someone's else code), but not cleaner.
 ```
     <div class="bold fs12 color-red mt10 p3">
     ...
     </div>
 ```
-because:
-1. CSS style is a clothes on the HTML body. You should be able to change outwear (style) without changing HTML with removing adding new classes
-2. It's create mess in your code. In the beginning you have 5 u-classes. But as project goes on, you add new one, you start to override them within themself for specific cases and at the end you'll get lost in your css
-3. Because as I mentionned, I am against of mixing different approaches - either you use BEM, bootstrap or utility classes, but not 2 or more in the same project
+Why they are bad:
+1. CSS style is like clothes for the HTML body. You should be able to change outwear (style) without changing HTML by removing or adding classes or elements. Classes like 'bold' or 'fs12' are too specific and if we decide to change 'clothes' we would need removed/change them in html, if we want to change font-weight or font-size. Classes 'item item--selected', don't need to be replaced, because they don't tell us anything about appearance of the element, it's managed entirely by the CSS. **We use the CSS to add an appearance to our document. We don't create our document to apply a style**.
+2. It's create mess in your code. In the beginning you have 5 u-classes. But as project goes on, you need another one and another, you start to override them within themself for specific cases and at the end you'll get lost in your css. And the next developer will get head-ache from something like this <div class="bold fs12 c-red mt10 p3 mt20-d mt-15-t p-rel"></div>
+3. As I mentionned, I am against of mixing different approaches - either you use BEM, bootstrap or utility classes, but not 2 or more in the same project
 
 ### 11. Using classes in HTML
 // TODO
