@@ -239,7 +239,7 @@ YES
 ```
 
 ### 4. DON'T change item's children properties, DO change item's properties based on its parent
-Keep rules for an item all together, so you don't need to search file(s) to find specific behaviour
+Keep rules for an item all together, so you don't need to search file(s) to find specific behaviour. In this case you're modifying selector .child not the .item, so it's should be in the same place as other .child's rules.
 
 #### DONT
 
@@ -369,8 +369,10 @@ YES
 // TODO
 
 ### 8. properties - do and don't
-dont add too specific rules to tag selectors, if there will be at least one case where needs to be overridden, use them only to reset the element. less rules are better
+dont add too specific rules to tag selectors, if there will be at least one case where needs to be overridden, use them only to reset the element. less rules are better.
+
 NO
+/general/_common.scss
 ```
 a {
     color: red;
@@ -379,6 +381,7 @@ a {
 ```
 
 because you would need to use tag selector again
+/components/_item.scss
 ```
 a.item {
     &.is-selected {
@@ -389,10 +392,14 @@ a.item {
 ```
 
 YES
+/general/_common.scss
 ```
 a {
     text-decoration: none;
 }
+```
+/components/_item.scss
+```
 .item1 {
     &.is-selected {
         color: red;
