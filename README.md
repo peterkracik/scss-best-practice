@@ -408,11 +408,11 @@ NO
 ```
 
 because the compiled CSS would look like this:
-font-size: 18px;
-~~font-size: 17px;~~
-~~font-size: 16px;~~
-~~font-size: 14px;~~
-~~font-size: 10px;~~
+font-size: 18px;  
+~~font-size: 17px;~~  
+~~font-size: 16px;~~  
+~~font-size: 14px;~~  
+~~font-size: 10px;~~  
 
 YES
 ```
