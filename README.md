@@ -1,26 +1,26 @@
 # Clean CSS Rules
 **This document should help with the keeping SCSS/CSS code clean, to prevent spaghetti effect and unorganised files.
-It is not another boilerplate, framework, or helper library. It is just a list of some basic rules, to keep your code clean and well-organised. Doesn't matter what framework do you use or what mixin for media queries, following these steps helps you to understand for code 1,2,10 years later or someone who get your code later.**
+It is not another boilerplate, framework, or helper library. It is just a list of some basic rules, to keep your code clean and well-organised. Doesn't matter what framework do you use or what mixin for media queries, despite this is mainly focused on BEM methodology, following these steps helps you to understand for code 1,2,10 years later or someone who get your code later.**
 
-Take them as ideas kinda css design patterns, not a CSS bible, which needs to be follow exactly. If you have something to add, modify or you don't agree at all, I'm open to your opinion.
+Take them as ideas kinda css design patterns, not a CSS bible, which needs to be follow exactly.
 
 ps: These are not only my ideas, I was inspired by my collegues and other devs and I am sure that most of the rules you've been already using. I just tried to create one doc with most important of them.
 
 ## What we don't want
-1. multiple overriding rules for an element in my compiled CSS
-2. loooong selectors ex: body .class1 ul li.is-active a.blue:first-child
-3. using element tag names or id as a selector
-4. searching for a selector and rules for it in my SCSS files more than 5s
-5. multiple indenting of SCSS files
-6. calc functions which needs a scientific calculator to have idea what could be the final results (Hello Slim ;) )
-7. no utility class
+1. Multiple overriding rules for an element in my compiled CSS
+2. Loooong selectors ex: body .class1 ul li.is-active a.blue:first-child
+3. Using element tag names or id as a selector
+4. Searching for a selector and rules for it in my SCSS files more than 5s
+5. Infinity indents in SCSS files
+6. Calc functions which needs a scientific calculator to have idea what could be the final results (Hello Slim ;) ) ex: padding: calc(100vh - 67/129em);
+7. Utility class ex: <div class="product bold fs-12 pb3 pt4 mr1 mtd2">...</div>
 
 ## What we want
-1. in my SCSS files all rules for one element in one place
-2. reduce the count of selector for each element to 1 max. 2 (accepting flags coming from JS for example) in my compiled CSS
-3. clear rules rules for media queries
-4. immediately find the selector and all its rules
-5. clear names of mixins, extends without
+1. All rules for one element in one place in my SCSS files 
+2. Reduce the count of selector for each element to 1 max. 2 (accepting flags coming from JS for example) in compiled CSS
+3. Clear rules for media queries
+4. Immediately find the selector and all its rules
+5. Clear names of mixins, extends
 
 ## Environments
 For my styles I use the [BEM](http://getbem.com) methodology, and I don't combine it with [utility classes](https://adamwathan.me/css-utility-classes-and-separation-of-concerns/) and I don't use (or try to not use) any kind of framework - bootstrap, grid or other.
@@ -310,12 +310,21 @@ They should be organised by:
 ```
 
 ### 5. media queries
+// TODO
 
 ### 6. rules order
+// TODO
+
 #### layout
+// TODO
+
 #### text
+// TODO
 #### font
+// TODO
+
 #### style
+// TODO
 
 ### 7. flags
 #### modifiers
@@ -357,6 +366,7 @@ YES
 ```
 
 #### js flags
+// TODO
 
 ### 8. properties - do and don't
 dont add too specific rules to tag selectors, if there will be at least one case where needs to be overridden, use them only to reset the element. less rules are better
@@ -395,6 +405,24 @@ a {
 ```
 
 #### calc
+// TODO
+
 #### font-size
+// TODO
 
 ### 9. mixins, includes, extends
+
+### 10. Utility classes
+I'm against using utility classes 
+```
+    <div class="bold fs12 color-red mt10 p3">
+    ...
+    </div>
+```
+because:
+1. CSS style is a clothes on the HTML body. You should be able to change outwear (style) without changing HTML with removing adding new classes
+2. It's create mess in your code. In the beginning you have 5 u-classes. But as project goes on, you add new one, you start to override them within themself for specific cases and at the end you'll get lost in your css
+3. Because as I mentionned, I am against of mixing different approaches - either you use BEM, bootstrap or utility classes, but not 2 or more in the same project
+
+### 11. Using classes in HTML
+// TODO
