@@ -14,6 +14,7 @@ ps: These are not only my ideas, I was inspired by my collegues and other devs a
 5. Infinity indents in SCSS files
 6. Calc functions which needs a scientific calculator to have idea what could be the final results (Hello Slim ;) ) ex: padding: calc(100vh - 67/129em);
 7. Utility class ex: <div class="product bold fs-12 pb3 pt4 mr1 mtd2">...</div>
+8. Using **!important**
 
 ## What we want
 1. All rules for one element in one place in my SCSS files
@@ -21,6 +22,7 @@ ps: These are not only my ideas, I was inspired by my collegues and other devs a
 3. Clear rules for media queries
 4. Immediately find the selector and all its rules
 5. Clear names of mixins, extends
+6. Not even think about of using the **!important**
 
 ## Environments
 For my styles I use the [BEM](http://getbem.com) methodology, and I don't combine it with [utility classes](https://adamwathan.me/css-utility-classes-and-separation-of-concerns/) and I don't use (or try to not use) any kind of framework - bootstrap, grid or other.
