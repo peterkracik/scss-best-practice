@@ -344,6 +344,7 @@ NO
     color: green;
 }
 ```
+HTML
 ```
 <div class="item--red"></div>
 
@@ -353,14 +354,15 @@ YES
 ```
 .item {
     background: blue;
-}
-.item--red {
-    color: red;
-}
-.item--green {
-    color: green;
+    &--red {
+        color: red;
+    }
+    &--green {
+        color: green;
+    }
 }
 ```
+HTML
 ```
 <div class="item item--red"></div>
 ```
