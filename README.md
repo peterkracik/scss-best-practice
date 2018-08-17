@@ -118,6 +118,9 @@ external css files (if not imported differently)
 
 ### 3. Selectors
 
+***Dont use selectors name or part of their names, that directly refer to specific style*** ie: .h4, item--bold, .title--red ...
+If you decide to change change your style or tag name, you will have to change also the name of the class and all referencies. Or you will finish with ```<h5 class="h4">``` or ```<h1 class="title title--red title--bold">``` which is blue and light.
+
 We should use following as selectors:
 
 #### CLASS: YES
