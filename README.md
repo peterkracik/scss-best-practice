@@ -1,56 +1,19 @@
 # Clean CSS Rules
 
-<!-- TOC -->
-
-- [Clean CSS Rules](#clean-css-rules)
-    - [What we don't want](#what-we-dont-want)
-    - [What we want](#what-we-want)
-    - [Environments](#environments)
-        - [Tools](#tools)
-    - [Rules](#rules)
-        - [1. Get your files organised](#1-get-your-files-organised)
-            - [General](#general)
-            - [Components](#components)
-            - [Vendors](#vendors)
-        - [2. Name them right](#2-name-them-right)
-        - [3. Selectors](#3-selectors)
-            - [CLASS: YES](#class-yes)
-            - [ID: NO](#id-no)
-            - [TAG: NO*](#tag-no)
-            - [ATTRIBUTES: YES*](#attributes-yes)
-        - [3. Don't ident. just don't!](#3-dont-ident-just-dont)
-        - [4. DON'T change item's children properties, DO change item's properties based on its parent](#4-dont-change-items-children-properties-do-change-items-properties-based-on-its-parent)
-            - [DONT](#dont)
-            - [DO](#do)
-        - [4. Selector order](#4-selector-order)
-        - [5. media queries](#5-media-queries)
-            - [Specify media queries for each element separatly](#specify-media-queries-for-each-element-separatly)
-            - [Limit media queries](#limit-media-queries)
-        - [Don't use general rules, if you gonna override it](#dont-use-general-rules-if-you-gonna-override-it)
-        - [6. Rules order](#6-rules-order)
-            - [Includes, extends](#includes-extends)
-            - [Layout](#layout)
-            - [Text, list](#text-list)
-            - [Font](#font)
-            - [Decorative](#decorative)
-            - [Transitionz and animations](#transitionz-and-animations)
-            - [Other](#other)
-        - [7. Flags](#7-flags)
-            - [Modifiers](#modifiers)
-            - [JS flags](#js-flags)
-        - [8. properties](#8-properties)
-            - [calc](#calc)
-            - [font-size](#font-size)
-                - [1. Set the HTML element font-sized using percetage](#1-set-the-html-element-font-sized-using-percetage)
-                - [2. Don't set font-size for the body](#2-dont-set-font-size-for-the-body)
-                - [3.a Set font-size per element](#3a-set-font-size-per-element)
-                - [3.b Set font-size per block and modify in element](#3b-set-font-size-per-block-and-modify-in-element)
-        - [9. mixins, includes, extends, variables](#9-mixins-includes-extends-variables)
-        - [10. Utility classes](#10-utility-classes)
-        - [11. NEVER* use !important](#11-never-use-important)
-        - [12. Using classes in HTML](#12-using-classes-in-html)
-
-<!-- /TOC -->
+- [1. Get your files organised](#1-get-your-files-organised)
+- [2. Name them right](#2-name-them-right)
+- [3. Selectors](#3-selectors)
+- [4. Don't ident. just don't!](#4-dont-ident-just-dont)
+- [5. DON'T change item's children properties, DO change item's properties based on its parent](#5-dont-change-items-children-properties-do-change-items-properties-based-on-its-parent)
+- [6. Selector order](#6-selector-order)
+- [7. media queries](#7-media-queries)
+- [8. Rules order](#8-rules-order)
+- [9. Flags](#9-flags)
+- [10. properties](#10-properties)
+- [11. mixins, includes, extends, variables](#11-mixins-includes-extends-variables)
+- [12. Utility classes](#12-utility-classes)
+- [13. NEVER* use !important](#13-never-use-important)
+- [14. Using classes in HTML](#14-using-classes-in-html)
 
 **This document should help with the keeping SCSS/CSS code clean, to prevent spaghetti effect and unorganised files.
 It is not another boilerplate, framework, or helper library. It is just a list of some basic rules, to keep your code clean and well-organised. Doesn't matter what framework do you use or what mixin for media queries, despite this is mainly focused on BEM methodology, following these steps helps you to understand for code 1,2,10 years later or someone who get your code later.**
@@ -230,7 +193,7 @@ input[type='type'] {
 }
 ```
 
-### 3. Don't ident. just don't!
+### 4. Don't ident. just don't!
 
 Dont indent selectors - no multiple classes allowed. Flags and parental classes are exceptions. You most probably will have problems to apply new rules later.
 
@@ -333,7 +296,7 @@ Dont inden't BEM rules, keep it flat for readability and to make it easy to find
 
 **One more thing - I use very rarely empty lines. It's not about gaining on file size, just to keep the file visualy clean.**
 
-### 4. DON'T change item's children properties, DO change item's properties based on its parent
+### 5. DON'T change item's children properties, DO change item's properties based on its parent
 
 Keep rules for an item all together, so you don't need to search file(s) to find specific behaviour. In this case you're modifying selector .child not the .item, so it's should be in the same place as other .child's rules.
 
@@ -367,7 +330,7 @@ Keep rules for an item all together, so you don't need to search file(s) to find
 }
 ```
 
-### 4. Selector order
+### 6. Selector order
 
 They should be organised by:
 
@@ -408,7 +371,7 @@ They should be organised by:
 }
 ```
 
-### 5. media queries
+### 7. media queries
 
 #### Specify media queries for each element separatly
 
@@ -565,7 +528,7 @@ font-size: 18px;
 
 This will give us only one final rule by a device.
 
-### Don't use general rules, if you gonna override it
+#### Don't use general rules, if you gonna override it
 
 Dont apply general selector rule, if you need different value for certain resolution.
 First apply all default rules, which are the same for each resolution and then resolution specific.
@@ -597,7 +560,7 @@ First apply all default rules, which are the same for each resolution and then r
 ```
 
 
-### 6. Rules order
+### 8. Rules order
 
 I don't have exact list of the order of rules, but I have a logic, and try to stick with it. I prefer to order my rules within a selector from importance of positioning and total 'impact' to the website to decorative rules.
 It means _left_ comes before _width_, and _width_ comes before _color_. But of course there are exceptions and cases when it's debatable if it's a decorative or positioning rule - for example line-height, font-size, border...
@@ -666,7 +629,7 @@ Everything to make it 'more nice' :)
 There are still lot of rules, which we can't really decide if it's a positioning or decorating, or place them by important, but there are often logically linked to another rule(s). For example _clear_ is for me linked to _float_, so I put them together same as _overflow_ is often linked to _width_ and _height_.  
 I like to put _content_ rule at the top. When I started to use _:before_, _:after_ I often forgot this rule and than I spent after few minutes to figure out, why the element didn't show up. So now everytime I write _:before_ or _:after_ I write the _content_ rule right afterwards, so I won't forget it.
 
-### 7. Flags
+### 9. Flags
 
 #### Modifiers
 
@@ -744,7 +707,7 @@ Classed applied by Javascript - instead of using BEM type modifier, is easier to
 }
 ```
 
-### 8. properties
+### 10. properties
 
 Dont add too specific rules to tag selectors, if there will be at least one case where needs to be overridden, use them only to reset the element. less rules are better.
 
@@ -906,11 +869,11 @@ Set the font-size for the block - it could be in px (preferably rem), rem, vw ju
 }
 ```
 
-### 9. mixins, includes, extends, variables
+### 11. mixins, includes, extends, variables
 
 // TODO
 
-### 10. Utility classes
+### 12. Utility classes
 
 I really don't like to use utility classes. In the most cases we create them to do think easier (maybe we are already lost in our or someone's else code), but not cleaner.
 
@@ -927,12 +890,12 @@ Why they are bad:
 
 As I mentionned before, I am against of mixing different approaches - either you use BEM, bootstrap or utility classes, but not 2 or more in the same project.
 
-### 11. NEVER* use !important
+### 13. NEVER* use !important
 
 If you need to use !important, you should start thinking about revising your code! Because it means there are so many classes and elements or a ID in the selector, that you can't override it easily - you're code's got dirty!  
 
 *Ok, there could be exceptions, but still, try to find a better solution. Sometimes when you use some jquery plugin with some nasty CSS inside, this could be the only solution. 
 
-### 12. Using classes in HTML
+### 14. Using classes in HTML
 
 // TODO
