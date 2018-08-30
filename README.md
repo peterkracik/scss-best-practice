@@ -1,5 +1,57 @@
 # Clean CSS Rules
 
+<!-- TOC -->
+
+- [Clean CSS Rules](#clean-css-rules)
+    - [What we don't want](#what-we-dont-want)
+    - [What we want](#what-we-want)
+    - [Environments](#environments)
+        - [Tools](#tools)
+    - [Rules](#rules)
+        - [1. Get your files organised](#1-get-your-files-organised)
+            - [General](#general)
+            - [Components](#components)
+            - [Vendors](#vendors)
+        - [2. Name them right](#2-name-them-right)
+        - [3. Selectors](#3-selectors)
+            - [CLASS: YES](#class-yes)
+            - [ID: NO](#id-no)
+            - [TAG: NO*](#tag-no)
+            - [ATTRIBUTES: YES*](#attributes-yes)
+        - [3. Don't ident. just don't!](#3-dont-ident-just-dont)
+        - [4. DON'T change item's children properties, DO change item's properties based on its parent](#4-dont-change-items-children-properties-do-change-items-properties-based-on-its-parent)
+            - [DONT](#dont)
+            - [DO](#do)
+        - [4. Selector order](#4-selector-order)
+        - [5. media queries](#5-media-queries)
+            - [Specify media queries for each element separatly](#specify-media-queries-for-each-element-separatly)
+            - [Limit media queries](#limit-media-queries)
+        - [Don't use general rules, if you gonna override it](#dont-use-general-rules-if-you-gonna-override-it)
+        - [6. Rules order](#6-rules-order)
+            - [Includes, extends](#includes-extends)
+            - [Layout](#layout)
+            - [Text, list](#text-list)
+            - [Font](#font)
+            - [Decorative](#decorative)
+            - [Transitionz and animations](#transitionz-and-animations)
+            - [Other](#other)
+        - [7. Flags](#7-flags)
+            - [Modifiers](#modifiers)
+            - [JS flags](#js-flags)
+        - [8. properties](#8-properties)
+            - [calc](#calc)
+            - [font-size](#font-size)
+                - [1. Set the HTML element font-sized using percetage](#1-set-the-html-element-font-sized-using-percetage)
+                - [2. Don't set font-size for the body](#2-dont-set-font-size-for-the-body)
+                - [3.a Set font-size per element](#3a-set-font-size-per-element)
+                - [3.b Set font-size per block and modify in element](#3b-set-font-size-per-block-and-modify-in-element)
+        - [9. mixins, includes, extends, variables](#9-mixins-includes-extends-variables)
+        - [10. Utility classes](#10-utility-classes)
+        - [11. NEVER* use !important](#11-never-use-important)
+        - [12. Using classes in HTML](#12-using-classes-in-html)
+
+<!-- /TOC -->
+
 **This document should help with the keeping SCSS/CSS code clean, to prevent spaghetti effect and unorganised files.
 It is not another boilerplate, framework, or helper library. It is just a list of some basic rules, to keep your code clean and well-organised. Doesn't matter what framework do you use or what mixin for media queries, despite this is mainly focused on BEM methodology, following these steps helps you to understand for code 1,2,10 years later or someone who get your code later.**
 
@@ -618,7 +670,7 @@ I like to put _content_ rule at the top. When I started to use _:before_, _:afte
 
 #### Modifiers
 
-modifiers are not standalone classes. They just modifie the block or element selector.
+modifiers are not standalone classes. They just modify the block or element selector.
 
 **DON'T**  
 
@@ -744,15 +796,15 @@ _/components/_item.scss_
 
 #### calc
 
-Calc is a really powerful function and I love it! Just keep it simple, because next person who'll come by to change the value, you'll need a scientific calculator.
+Calc is a really powerful function and I love it! Just keep it simple, because next person who'll come by to change the value, will need a scientific calculator.
 
-**DONT**
+**DON'T**
 
 ``` scss
-font-size: calc(1em * 5.7/1.4); // how much is 1em in this case? Why the hell 5.7 and 1.4?
+padding: calc(100vh - 67/129em); // what's 67? and why 129? and how much em is it? and in pixels?
 ```
 
-**BETTER**
+**THIS IS OK**
 
 ```scss
 width: calc(100vw - 20px);
@@ -760,8 +812,7 @@ width: calc(100vw - 20px);
 
 #### font-size
 
-When it comes to font-size, everybody prefers something else. I do like PX, because I know what I'll get on the screen. I don't like so much EM, because you can get easy lost thanks to parent elements. All of them have pros and cons,
-and all of them have their place where to use them.
+When it comes to font-size, everybody prefers something else. All of units have their pros and cons and all their place where to use them.
 
 ##### 1. Set the HTML element font-sized using percetage
 
@@ -787,8 +838,7 @@ You would just override the previous rule. Or you can set it to 1em/1rem
 
 ##### 3.a Set font-size per element
 
-I use often this type, each element has it's own font-size, and based on design I decide if it's in px (preferably rem), rem or vw. This solution is good for the case, when font-sizes of elements within the same block don't have same ratio for different screen resolutions
-**In this case I never use em**
+I use often this method, each element has it's own independant font-size, and based on design I decide if it's in px (preferably rem), rem or vw. This solution is good for the case, when font-sizes of elements within the same block don't have same ratio for different screen resolutions. **In this case I never use em**.
 
 ```scss
 .teaser {
@@ -830,8 +880,8 @@ I use often this type, each element has it's own font-size, and based on design 
 
 ##### 3.b Set font-size per block and modify in element
 
-In the case, where design on a block is identical for all screen resolutions, just smaller (ie. block _teaser_ on mobile looks same as on desktop, only font-size are smaller) I use this method.
-Set the font-size for the block - it could be in px (preferably rem), rem, vw just not em. And then set the font-size of the element within this block with em. So for the responsive design, we need media queries only for the block (parent).
+In the case, where design of a block is identical for all screen resolutions, just smaller (ie. block _teaser_ on mobile looks same as on desktop, only font-sizes are smaller) I use this method.  
+Set the font-size for the block - it could be in px (preferably rem), rem, vw just not em. And then set the font-size of the element within this block with em. So for the responsive design, we'll need media queries only for the block (parent).
 
 ``` scss
 .teaser {
@@ -877,6 +927,12 @@ Why they are bad:
 
 As I mentionned before, I am against of mixing different approaches - either you use BEM, bootstrap or utility classes, but not 2 or more in the same project.
 
-### 11. Using classes in HTML
+### 11. NEVER* use !important
+
+If you need to use !important, you should start thinking about revising your code! Because it means there are so many classes and elements or a ID in the selector, that you can't override it easily - you're code's got dirty!  
+
+*Ok, there could be exceptions, but still, try to find a better solution. Sometimes when you use some jquery plugin with some nasty CSS inside, this could be the only solution. 
+
+### 12. Using classes in HTML
 
 // TODO
