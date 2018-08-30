@@ -1,22 +1,25 @@
 # Clean CSS Rules
 
-- [1. Get your files organised](#1-get-your-files-organised)
-- [2. Name them right](#2-name-them-right)
+- [0. Introduction](#0-introduction)
+- [1. Get your SCSS organised](#1-get-your-scss-organised)
+- [2. Name your files right](#2-name-your-files-right)
 - [3. Selectors](#3-selectors)
 - [4. Don't ident. just don't!](#4-dont-ident-just-dont)
 - [5. DON'T change item's children properties, DO change item's properties based on its parent](#5-dont-change-items-children-properties-do-change-items-properties-based-on-its-parent)
 - [6. Selector order](#6-selector-order)
-- [7. media queries](#7-media-queries)
+- [7. Media queries](#7-media-queries)
 - [8. Rules order](#8-rules-order)
 - [9. Flags](#9-flags)
-- [10. properties](#10-properties)
-- [11. mixins, includes, extends, variables](#11-mixins-includes-extends-variables)
+- [10. Properties](#10-properties)
+- [11. Mixins, includes, extends, variables](#11-mixins-includes-extends-variables)
 - [12. Utility classes](#12-utility-classes)
 - [13. NEVER* use !important](#13-never-use-important)
 - [14. Using classes in HTML](#14-using-classes-in-html)
 
+## Introduction
+
 **This document should help with the keeping SCSS/CSS code clean, to prevent spaghetti effect and unorganised files.
-It is not another boilerplate, framework, or helper library. It is just a list of some basic rules, to keep your code clean and well-organised. Doesn't matter what framework do you use or what mixin for media queries, despite this is mainly focused on BEM methodology, following these steps helps you to understand for code 1,2,10 years later or someone who get your code later.**
+It is not another boilerplate, framework, or helper library. It is just a list of some basic rules, to keep your code clean and well-organised. Doesn't matter what framework do you use or what mixin for media queries, despite this is mainly focused on BEM methodology, following these steps helps you to understand the code 1,2,10 years later or someone who'll get your code later.**
 
 Take them as ideas kinda css design patterns, not a CSS bible, which needs to be follow exactly.
 
@@ -57,9 +60,11 @@ Which tools is not so important, but what they achieve it is.
 2. Combining media queries - it takes all media queries from all files, group it by the same type and place it at the end of css.
 3. To have my compiled file as small as possible
 
+======
+
 ## Rules
 
-### 1. Get your files organised
+### 1. Get your SCSS organised
 
 ```
 ./styles
@@ -126,10 +131,14 @@ _page-header-nav.scss_
 
 external css files (if not imported differently)
 
-### 2. Name them right
+======
+
+### 2. Name your files right
 
 1. All files except the endpoint files should start with the underscore. So we'll know they only includes files.
 2. Names of the components files should be always the same as the model or element where we use them. So we know directly in which file we have to search for a specific selector. underscore should be replace by -
+
+======
 
 ### 3. Selectors
 
@@ -192,6 +201,8 @@ input[type='type'] {
     color: red;
 }
 ```
+
+======
 
 ### 4. Don't ident. just don't!
 
@@ -296,6 +307,8 @@ Dont inden't BEM rules, keep it flat for readability and to make it easy to find
 
 **One more thing - I use very rarely empty lines. It's not about gaining on file size, just to keep the file visualy clean.**
 
+======
+
 ### 5. DON'T change item's children properties, DO change item's properties based on its parent
 
 Keep rules for an item all together, so you don't need to search file(s) to find specific behaviour. In this case you're modifying selector .child not the .item, so it's should be in the same place as other .child's rules.
@@ -329,6 +342,8 @@ Keep rules for an item all together, so you don't need to search file(s) to find
     }
 }
 ```
+
+======
 
 ### 6. Selector order
 
@@ -371,7 +386,9 @@ They should be organised by:
 }
 ```
 
-### 7. media queries
+======
+
+### 7. Media queries
 
 #### Specify media queries for each element separatly
 
@@ -560,6 +577,8 @@ First apply all default rules, which are the same for each resolution and then r
 ```
 
 
+======
+
 ### 8. Rules order
 
 I don't have exact list of the order of rules, but I have a logic, and try to stick with it. I prefer to order my rules within a selector from importance of positioning and total 'impact' to the website to decorative rules.
@@ -628,6 +647,8 @@ Everything to make it 'more nice' :)
 
 There are still lot of rules, which we can't really decide if it's a positioning or decorating, or place them by important, but there are often logically linked to another rule(s). For example _clear_ is for me linked to _float_, so I put them together same as _overflow_ is often linked to _width_ and _height_.  
 I like to put _content_ rule at the top. When I started to use _:before_, _:after_ I often forgot this rule and than I spent after few minutes to figure out, why the element didn't show up. So now everytime I write _:before_ or _:after_ I write the _content_ rule right afterwards, so I won't forget it.
+
+======
 
 ### 9. Flags
 
@@ -707,7 +728,9 @@ Classed applied by Javascript - instead of using BEM type modifier, is easier to
 }
 ```
 
-### 10. properties
+======
+
+### 10. Properties
 
 Dont add too specific rules to tag selectors, if there will be at least one case where needs to be overridden, use them only to reset the element. less rules are better.
 
@@ -869,9 +892,13 @@ Set the font-size for the block - it could be in px (preferably rem), rem, vw ju
 }
 ```
 
-### 11. mixins, includes, extends, variables
+======
+
+### 11. Mixins, includes, extends, variables
 
 // TODO
+
+======
 
 ### 12. Utility classes
 
@@ -890,11 +917,15 @@ Why they are bad:
 
 As I mentionned before, I am against of mixing different approaches - either you use BEM, bootstrap or utility classes, but not 2 or more in the same project.
 
+======
+
 ### 13. NEVER* use !important
 
 If you need to use !important, you should start thinking about revising your code! Because it means there are so many classes and elements or a ID in the selector, that you can't override it easily - you're code's got dirty!  
 
 *Ok, there could be exceptions, but still, try to find a better solution. Sometimes when you use some jquery plugin with some nasty CSS inside, this could be the only solution. 
+
+======
 
 ### 14. Using classes in HTML
 
