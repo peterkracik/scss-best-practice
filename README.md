@@ -6,7 +6,7 @@
 - [3. Selectors](#3-selectors)
 - [4. Don't ident. just don't!](#4-dont-ident-just-dont)
 - [5. DON'T change item's children properties, DO change item's properties based on its parent](#5-dont-change-items-children-properties-do-change-items-properties-based-on-its-parent)
-- [6. Selector order](#6-selector-order)
+- [6. Selectors order](#6-selectors-order)
 - [7. Media queries](#7-media-queries)
 - [8. Rules order](#8-rules-order)
 - [9. Flags](#9-flags)
@@ -345,7 +345,7 @@ Keep rules for an item all together, so you don't need to search file(s) to find
 
 ---
 
-### 6. Selector order
+### 6. Selectors order
 
 They should be organised by:
 
