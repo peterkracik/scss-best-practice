@@ -279,6 +279,8 @@ Dont inden't BEM rules, keep it flat for readability and to make it easy to find
 }
 ```
 
+**One more thing - I use very rarely empty lines. It's not about gaigning of file size, just to keep the file visually clean.**
+
 ### 4. DON'T change item's children properties, DO change item's properties based on its parent
 
 Keep rules for an item all together, so you don't need to search file(s) to find specific behaviour. In this case you're modifying selector .child not the .item, so it's should be in the same place as other .child's rules.
@@ -514,6 +516,7 @@ This will give us only one final rule by a device.
 ### Don't use general rules, if you gonna override it
 
 Dont apply general selector rule, if you need different value for certain resolution.
+First apply all default rules, which are the same for each resolution and then resolution specific.
 
 **DON'T**  
 
@@ -542,29 +545,78 @@ Dont apply general selector rule, if you need different value for certain resolu
 ```
 
 
-### 6. rules order
+### 6. Rules order
 
-// TODO
+I don't have exact list of the order of rules, but I have a logic, and try to stick with it. I prefer to order my rules within a selector from importance of positioning and total 'impact' to the website to decorative rules.
+It means _left_ comes before _width_, and _width_ comes before _color_. But of course there are exceptions and cases when it's debatable if it's a decorative or positioning rule - for example line-height, font-size, border...
+That's why there is no exact list, just trying always to keep it logic. I created kind of logical 'groups' where they belongs based on this rules. Because 'Text rules' change more in the layout than 'font rules', and 'font rules'
+more than 'decorative'... 
 
-#### layout
+#### Includes, extends
 
-// TODO
+**Extend** - I place them always at the top. As they bring us some rules and those rules needs to be sometimes override, they have to be placed first.
+**Include** - I put them mostly at the top for the same reason as extends, but I have some specific cases when I don't. for example I created a mixins for responsive design, where I insert one rule (font-size in this example) as the first parameter, and its values for mobile, tablet and desktop as 2nd, 3rd and 4th parameter - ```@include responsive(font-size, 12px, 14px, 16px)```. So in this case I place this rule as it was a basic _font-size_ rule.
 
-#### text
+#### Layout
 
-// TODO
+Always from 'outside' as it is the most important, to the 'inside'.
 
-#### font
+- display
+- position
+- float
+- top, left, right, bottom
+- z-index
+- transform
+- margin
+- width, height, max-width, max-height
+- border (but it could be also in decorative rules)
+- padding
+- ...
 
-// TODO
+#### Text, list
 
-#### style
+Everything around text in the meaning as a paragraph.
 
-// TODO
+- line-height
+- text-align
+- text-transform
+- text-decoration
+- list-style
+- ...
 
-### 7. flags
+#### Font
 
-#### modifiers
+Same logic as well - importance of layout impact. Font-size changes layout, color doesnt...
+
+- font-family
+- font-size
+- font-weight
+- font-style
+- ...
+
+#### Decorative
+
+Everything to make it 'more nice' :)
+
+- color
+- background
+- border (if it has decorative function)
+- box-shadows
+- ...
+
+#### Transitionz and animations
+
+- animation
+- transition
+
+#### Other
+
+There are still lot of rules, which we can't really decide if it's a positioning or decorating, or place them by important, but there are often logically linked to another rule(s). For example _clear_ is for me linked to _float_, so I put them together same as _overflow_ is often linked to _width_ and _height_.  
+I like to put _content_ rule at the top. When I started to use _:before_, _:after_ I often forgot this rule and than I spent after few minutes to figure out, why the element didn't show up. So now everytime I write _:before_ or _:after_ I write the _content_ rule right afterwards, so I won't forget it.
+
+### 7. Flags
+
+#### Modifiers
 
 modifiers are not standalone classes. They just modifie the block or element selector.
 
@@ -593,7 +645,7 @@ HTML
 
 **DO**  
 
-```axaa
+```scss
 .item {
     background: blue;
     &--red {
