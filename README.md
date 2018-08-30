@@ -156,7 +156,7 @@ these are only for JS, hard to override (needs 256 classes selector to override 
 - when there is no possibility to add class directly in the html
 - if it is an output of a wysiwyg
 - for default settings (body, html, reset ul... )
-- inputs with type attribute ( input[type='text'], textarea)
+- inputs with type attribute (input[type='text'], textarea), but class is still preferable option
 
 #### ATTRIBUTES: YES*
 
@@ -180,7 +180,7 @@ input[type='type'] {
 
 ### 3. Don't ident. just don't!
 
-Dont indent selectors - no multiple classes allowed. Flags and parental classes are exceptions. You most probably will have problems to apply new rules.
+Dont indent selectors - no multiple classes allowed. Flags and parental classes are exceptions. You most probably will have problems to apply new rules later.
 
 The compiled CSS SHOULDN'T look like
 
@@ -279,7 +279,7 @@ Dont inden't BEM rules, keep it flat for readability and to make it easy to find
 }
 ```
 
-**One more thing - I use very rarely empty lines. It's not about gaigning of file size, just to keep the file visually clean.**
+**One more thing - I use very rarely empty lines. It's not about gaining on file size, just to keep the file visualy clean.**
 
 ### 4. DON'T change item's children properties, DO change item's properties based on its parent
 
@@ -744,11 +744,117 @@ _/components/_item.scss_
 
 #### calc
 
-// TODO
+Calc is a really powerful function and I love it! Just keep it simple, because next person who'll come by to change the value, you'll need a scientific calculator.
+
+**DONT**
+
+``` scss
+font-size: calc(1em * 5.7/1.4); // how much is 1em in this case? Why the hell 5.7 and 1.4?
+```
+
+**BETTER**
+
+```scss
+width: calc(100vw - 20px);
+```
 
 #### font-size
 
-// TODO
+When it comes to font-size, everybody prefers something else. I do like PX, because I know what I'll get on the screen. I don't like so much EM, because you can get easy lost thanks to parent elements. All of them have pros and cons,
+and all of them have their place where to use them.
+
+##### 1. Set the HTML element font-sized using percetage
+
+This way the root font-size comes from browser settings, what's important for accessibility. 
+The value 62.5% is to reset it to 10px assuming the browser have 16px as default, what's easier for rem, em usage, it's easier to multiply ;) So you will work exactly same as it was ```font-size: 10px```, just now, there is a support for accessibility.
+And of course, than insteand of px you'll use rem with 1/10 of value.
+
+```scss
+html {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1em;
+}
+.teaser {
+    font-size: 1.5rem;
+}
+```
+
+##### 2. Don't set font-size for the body
+
+You would just override the previous rule. Or you can set it to 1em/1rem
+
+##### 3.a Set font-size per element
+
+I use often this type, each element has it's own font-size, and based on design I decide if it's in px (preferably rem), rem or vw. This solution is good for the case, when font-sizes of elements within the same block don't have same ratio for different screen resolutions
+**In this case I never use em**
+
+```scss
+.teaser {
+    &__title {
+        @media only screen and (max-width: 767px) { 
+            font-size: 26px;
+        }
+        @media only screen and (min-width: 767px) and (max-width: 1024px) { 
+            font-size: 4vw;
+        }
+        @media only screen and (min-width: 1025px) { 
+            font-size: 4rem;
+        }
+    }
+    &__excerpt {
+        @media only screen and (max-width: 767px) { 
+            font-size: 13px;
+        }
+        @media only screen and (min-width: 767px) and (max-width: 1024px) { 
+            font-size: 1.6vw;
+        }
+        @media only screen and (min-width: 1025px) { 
+            font-size: 2rem;
+        }
+    }
+    &__date {
+        @media only screen and (max-width: 767px) { 
+            font-size: 10px;
+        }
+        @media only screen and (min-width: 767px) and (max-width: 1024px) { 
+            font-size: 1.6vw;
+        }
+        @media only screen and (min-width: 1025px) { 
+            font-size: 12rem;
+        }
+    }
+}
+```
+
+##### 3.b Set font-size per block and modify in element
+
+In the case, where design on a block is identical for all screen resolutions, just smaller (ie. block _teaser_ on mobile looks same as on desktop, only font-size are smaller) I use this method.
+Set the font-size for the block - it could be in px (preferably rem), rem, vw just not em. And then set the font-size of the element within this block with em. So for the responsive design, we need media queries only for the block (parent).
+
+``` scss
+.teaser {
+    @media only screen and (max-width: 767px) { 
+        font-size: 13px;
+    }
+    @media only screen and (min-width: 767px) and (max-width: 1024px) { 
+        font-size: 2vw;
+    }
+    @media only screen and (min-width: 1025px) { 
+        font-size: 2rem;
+    }
+    &__title {
+        font-size: 2em;
+    }
+    &__excerpt {
+        font-size: 1em; // this line is not necessary of course
+    }
+    &__date {
+        font-size: 0.8em;
+    }
+}
+```
 
 ### 9. mixins, includes, extends, variables
 
