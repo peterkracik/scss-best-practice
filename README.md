@@ -60,7 +60,7 @@ Which tools is not so important, but what they achieve it is.
 2. Combining media queries - it takes all media queries from all files, group it by the same type and place it at the end of css.
 3. To have my compiled file as small as possible
 
-======
+---
 
 ## Rules
 
@@ -131,14 +131,14 @@ _page-header-nav.scss_
 
 external css files (if not imported differently)
 
-======
+---
 
 ### 2. Name your files right
 
 1. All files except the endpoint files should start with the underscore. So we'll know they only includes files.
 2. Names of the components files should be always the same as the model or element where we use them. So we know directly in which file we have to search for a specific selector. underscore should be replace by -
 
-======
+---
 
 ### 3. Selectors
 
@@ -202,7 +202,7 @@ input[type='type'] {
 }
 ```
 
-======
+---
 
 ### 4. Don't ident. just don't!
 
@@ -307,7 +307,7 @@ Dont inden't BEM rules, keep it flat for readability and to make it easy to find
 
 **One more thing - I use very rarely empty lines. It's not about gaining on file size, just to keep the file visualy clean.**
 
-======
+---
 
 ### 5. DON'T change item's children properties, DO change item's properties based on its parent
 
@@ -343,7 +343,7 @@ Keep rules for an item all together, so you don't need to search file(s) to find
 }
 ```
 
-======
+---
 
 ### 6. Selector order
 
@@ -386,7 +386,7 @@ They should be organised by:
 }
 ```
 
-======
+---
 
 ### 7. Media queries
 
@@ -577,7 +577,7 @@ First apply all default rules, which are the same for each resolution and then r
 ```
 
 
-======
+---
 
 ### 8. Rules order
 
@@ -648,7 +648,7 @@ Everything to make it 'more nice' :)
 There are still lot of rules, which we can't really decide if it's a positioning or decorating, or place them by important, but there are often logically linked to another rule(s). For example _clear_ is for me linked to _float_, so I put them together same as _overflow_ is often linked to _width_ and _height_.  
 I like to put _content_ rule at the top. When I started to use _:before_, _:after_ I often forgot this rule and than I spent after few minutes to figure out, why the element didn't show up. So now everytime I write _:before_ or _:after_ I write the _content_ rule right afterwards, so I won't forget it.
 
-======
+---
 
 ### 9. Flags
 
@@ -728,7 +728,7 @@ Classed applied by Javascript - instead of using BEM type modifier, is easier to
 }
 ```
 
-======
+---
 
 ### 10. Properties
 
@@ -892,13 +892,13 @@ Set the font-size for the block - it could be in px (preferably rem), rem, vw ju
 }
 ```
 
-======
+---
 
 ### 11. Mixins, includes, extends, variables
 
 // TODO
 
-======
+---
 
 ### 12. Utility classes
 
@@ -917,7 +917,7 @@ Why they are bad:
 
 As I mentionned before, I am against of mixing different approaches - either you use BEM, bootstrap or utility classes, but not 2 or more in the same project.
 
-======
+---
 
 ### 13. NEVER* use !important
 
@@ -925,7 +925,7 @@ If you need to use !important, you should start thinking about revising your cod
 
 *Ok, there could be exceptions, but still, try to find a better solution. Sometimes when you use some jquery plugin with some nasty CSS inside, this could be the only solution. 
 
-======
+---
 
 ### 14. Using classes in HTML
 
