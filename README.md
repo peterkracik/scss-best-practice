@@ -136,7 +136,8 @@ external css files (if not imported differently)
 ### 2. Name your files right
 
 1. All files except the endpoint files should start with the underscore. So we'll know they only includes files.
-2. Names of the components files should be always the same as the model or element where we use them. So we know directly in which file we have to search for a specific selector. underscore should be replace by -
+2. Always use low casing for file naming.
+3. Names of the components files should be always the same as the model or element where we use them. So we know directly in which file we have to search for a specific selector. underscore should be replace by -
 
 ---
 
