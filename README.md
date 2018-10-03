@@ -88,6 +88,29 @@ Which tools is not so important, but what they achieve it is.
 
 files containing default settins, functions, variables and everything to set up the project.
 
+#### Hierarchy
+
+You should import variables, helpers/mixin first, then overridable items (vendors, common...) and eventually the components.
+
+_main.scss_
+
+```scss
+@import 'general/variables';
+@import 'general/mixins';
+
+@import 'vendors/normalize';
+@import 'vendors/carousel';
+//...
+
+@import 'general/fonts';
+@import 'general/common';
+
+@import 'components/header-nav';
+//...
+
+```
+
+
 #### Components
 
 SCSS files should contain only one block or element. If you need same element in another project, in the best case you just copy html html and this file and you're ready to go. Probably variables would match, but that's the least.  
