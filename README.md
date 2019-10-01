@@ -953,4 +953,102 @@ If you need to use !important, you should start thinking about revising your cod
 
 ### 14. Using classes in HTML
 
-// TODO
+#### Don't adapt bem class names, keep it as it was invented
+1. BEM represents names like __my-block__its-element--some-modifier__, where where there are always max. one block, max one element, max one modifier, and each could have **max 2 words names**.
+
+**DON'T use 3+ words names**
+```html
+<div class="my-super-block__some-element"></div>
+<div class="my-block__its-perfect-element"></div>
+<div class="my-block__its-element--super-duper-modifier"></div>
+```
+
+**DO**
+```html
+<div class="my-block__its-element my-block__its-element--perfect-modifier"><div>
+```
+
+2. BEM doesn't represent indentation - so there is no need to tell if the text is inside element content and that's inside block my-block. BEM is telling that the element is inside block.
+
+**DON'T**
+```html
+<div class="my-block">
+    <div class="my-block__content">
+        <div class="my-block__content__text">
+            <h1 class="my-block__content__text__title">My title</h1>
+        </div>
+    </div>
+</div>
+```
+
+**DO**
+```html
+<div class="my-block">
+    <div class="my-block__content">
+        <div class="my-block__text">
+            <h1 class="my-block__title">My title</h1>
+        </div>
+    </div>
+</div>
+```
+
+or to keep the semantic (but not thought as a indetation). In this case it doesnt mean the element __text__ is inside the element __content__ but rather the element __content-text__ is inside our block - its more readable
+**DO**
+```html
+<div class="my-block">
+    <div class="my-block__content">
+        <div class="my-block__content-text">
+            <h1 class="my-block__content-title">My title</h1>
+        </div>
+    </div>
+</div>
+```
+
+3. bem class with modifier can't be standalone
+
+As I've already mentionned, the class containing a modifier is not a standalone class, just something that extends the element class.
+
+**DON'T**
+```html
+<div class="my-block__its-element--perfect-modifier"></div>
+```
+
+**DO**
+```html
+<div class="my-block__its-element my-block__its-element--perfect-modifier"></div>
+```
+
+
+#### Block shouldn't be an element at the same time
+
+Even though it's not said in the manual of the BEM, I don't recommend using a block and an element class at the same time for one element. Block should be something we can easily copy-paste to another project, but that wouldn't be the case if it has another element's class. And also their classes wouldn't conflict.
+
+**DON'T**
+```html
+<ul class="my-list">
+    <li class="my-list__item teaser">
+        <div class="teaser__content">
+            ...
+        </div>
+    </li>
+</ul>
+
+```
+
+**DO**
+```html
+<ul class="my-list">
+    <li class="my-list__item">
+        <div class="teaser">
+            <div class="teaser__content">
+                ...
+            </div>
+        </div>
+    </li>
+</ul>
+
+```
+
+In the first case, the content of the <li> is very closesely attached to the <li> element and in most cases it wouldn't be easy to replace it by another element. In the second case, it doesn't matter what we use inside the list item.
+
+
