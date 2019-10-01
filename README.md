@@ -1004,7 +1004,7 @@ or to keep the semantic (but not thought as a indetation). In this case it doesn
 </div>
 ```
 
-**In the case you absolutely need 3 words block or element name, or you need to you B__E__E--M, your block is probably too complex and you should create another standalone block**
+**In the case you absolutely need 3 words block or element name, or you need to to use B__E__E--M, your block is probably too complex and you should create another standalone block**
 
 3. bem class with modifier can't be standalone
 
