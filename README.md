@@ -947,7 +947,7 @@ As I mentionned before, I am against of mixing different approaches - either you
 
 If you need to use !important, you should start thinking about revising your code! Because it means there are so many classes and elements or a ID in the selector, that you can't override it easily - you're code's got dirty!  
 
-*Ok, there could be exceptions, but still, try to find a better solution. Sometimes when you use some jquery plugin with some nasty CSS inside, this could be the only solution. 
+*Ok, there could be exceptions, but still, try to find a better solution. Sometimes when you use some jquery plugin with some nasty CSS inside, this could be the only solution. Or for the css for the print this is the (dirty) way to go.
 
 ---
 
