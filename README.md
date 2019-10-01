@@ -1051,6 +1051,34 @@ Even though it's not said in the manual of the BEM, I don't recommend using a bl
 
 ```
 
-In the first case, the content of the <li> is very closesely attached to the <li> element and in most cases it wouldn't be easy to replace it by another element. In the second case, it doesn't matter what we use inside the list item.
+In the first case, the content of the li is very closesely attached to it element and in most cases it wouldn't be easy to replace it by another element. In the second case, it doesn't matter what we use inside the list item. So it would be easier to use different type of content inside the list like:
 
+```html
+<ul class="my-list">
+    <li class="my-list__item">
+        <div class="article-teaser">
+            <div class="article-teaser__content">
+                ...
+            </div>
+        </div>
+    </li>
+    <li class="my-list__item">
+        <div class="banner">
+            <div class="banner__image">
+                ...
+            </div>
+        </div>
+    </li>
+    <li class="my-list__item">
+        <div class="product">
+            <div class="product__wrapper">
+                ...
+            </div>
+        </div>
+    </li>
+</ul>
+
+```
+
+In other words the example one would create a list which items area teasers, in the latter we would have a list which items could contain whatever they want.
 
