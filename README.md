@@ -926,7 +926,7 @@ Set the font-size for the block - it could be in px (preferably rem), rem, vw ju
 
 ### 12. Utility classes
 
-I really don't like to use utility classes. In the most cases we create them to do think easier (maybe we are already lost in our or someone's else code), but not cleaner.
+I really don't like to use utility classes. In the most cases we create them to do things easier (maybe we are already lost in ours or someone's else code), but not cleaner.
 
 ```html
     <div class="bold fs12 color-red mt10 p3">
