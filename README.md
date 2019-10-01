@@ -954,7 +954,7 @@ If you need to use !important, you should start thinking about revising your cod
 ### 14. Using classes in HTML
 
 #### Don't adapt bem class names, keep it as it was invented
-1. BEM represents names like __my-block__its-element--some-modifier__, where where there are always **max. one block, max one element, max one modifier**, and each could have **max 2 words names**.
+1. BEM represents names like __my-block__its-element--some-modifier__, where where there are always **max one block, max one element, max one modifier**, and each could have **max 2 words names**.
 
 **DON'T use 3+ words names**
 ```html
@@ -968,7 +968,7 @@ If you need to use !important, you should start thinking about revising your cod
 <div class="my-block__its-element my-block__its-element--perfect-modifier"><div>
 ```
 
-2. BEM doesn't represent indentation - so there is no need to tell if the text is inside element content and that's inside block my-block. BEM is telling that the element is inside block.
+2. BEM doesn't represent an indentation - so there is no need to tell if the text is inside the element content and that's inside the block my-block. BEM is telling that the element is inside a block.
 
 **DON'T**
 ```html
@@ -1003,6 +1003,8 @@ or to keep the semantic (but not thought as a indetation). In this case it doesn
     </div>
 </div>
 ```
+
+**In the case you absolutely need 3 words block or element name, or you need to you B__E__E--M, your block is probably too complex and you should create another standalone block**
 
 3. bem class with modifier can't be standalone
 
