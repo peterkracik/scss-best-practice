@@ -954,7 +954,7 @@ If you need to use !important, you should start thinking about revising your cod
 ### 14. Using classes in HTML
 
 #### Don't adapt bem class names, keep it as it was invented
-1. BEM represents names like __my-block__its-element--some-modifier__, where where there are always max. one block, max one element, max one modifier, and each could have **max 2 words names**.
+1. BEM represents names like __my-block__its-element--some-modifier__, where where there are always **max. one block, max one element, max one modifier**, and each could have **max 2 words names**.
 
 **DON'T use 3+ words names**
 ```html
